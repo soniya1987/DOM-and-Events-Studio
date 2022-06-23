@@ -28,3 +28,23 @@
 .centered {
     text-align: center;
 }
+
+.up {
+    top: -10px;
+}
+
+.bottom {
+    bottom: +10px;
+}
+
+.right {
+    right: +10px;
+}
+
+.left {
+    left: -10px;
+}
+
+#rocket {
+    top: 10px;
+}
