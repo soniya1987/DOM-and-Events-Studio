@@ -14,7 +14,9 @@ function init()
     const rightButton = document.getElementById("right");
     const leftButton = document.getElementById("left");
     const rocketImage = document.getElementById("rocket");
-    let position = 0;
+    rocketImage.style.position = 'absolulte';
+    rocketImage.style.left = '0px';
+    rocketImage.style.right = '0px';
 
     takeoffButton.addEventListener("click", event => {
         let confirmationWindow = confirm("Confirm that shuttle is ready for takeoff.");
@@ -46,36 +48,40 @@ function init()
         }
     });    
 
-    up.addEventListener("click", event => {
-        console.log(rocketImage.offsetTop);
-        console.log(rocketImage.offsetHeight);
-        console.log(rocketImage.offsetLeft);
-        console.log(rocketImage.offsetParent.offsetTop, rocketImage.offsetParent.offsetHeight);
-        position = rocketImage.offsetParent.offsetTop - 10;
-        rocketImage.style.top = position + 'px';
-        shuttleHeight.innerHTML = Number(shuttleHeight.innerHTML) + 10000;
+    upButton.addEventListener("click", event => {
+        if (shuttleHeight.innerHTML != "250000")
+        {
+            movement = parseInt(rocketImage.style.bottom) + 10 + 'px';
+            rocketImage.style.bottom = movement;
+            shuttleHeight.innerHTML = parseInt(shuttleHeight.innerHTML) + 10000;
+        }  
     });   
 
-    down.addEventListener("click", event => {
-        if (position >= 360)
+    downButton.addEventListener("click", event => {
+        if (shuttleHeight.innerHTML != "0")
         {
-            position = 360;
-        }
-        else
-        {
-            position += 10;
-        }
-        console.log(rocketImage.offsetTop);
-        rocketImage.scroll += 10;
-        shuttleHeight.innerHTML = Number(shuttleHeight.innerHTML) - 10000;
+            movement = parseInt(rocketImage.style.bottom) - 10 + 'px';
+            rocketImage.style.bottom = movement;
+            shuttleHeight.innerHTML = parseInt(shuttleHeight.innerHTML) - 10000;
+        }  
     });      
     
-    right.addEventListener("click", event => {
-        rocketImage.style.bottom -= '10px';
+    rightButton.addEventListener("click", event => {
+        if (shuttleHeight.innerHTML != "510000")
+        {
+            movement = parseInt(rocketImage.style.left) + 10 + 'px';
+            rocketImage.style.left = movement;
+            shuttleHeight.innerHTML = parseInt(shuttleHeight.innerHTML) + 10000;
+        }  
     });
     
-    left.addEventListener("click", event => {
-        rocketImage.style.bottom -= '10px';
+    leftButton.addEventListener("click", event => {
+        if (shuttleHeight.innerHTML != "-20000")
+        {
+            movement = parseInt(rocketImage.style.left) - 10 + 'px';
+            rocketImage.style.left = movement;
+            shuttleHeight.innerHTML = parseInt(shuttleHeight.innerHTML) - 10000;
+        }  
     });  
 }
 
